@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="com.example.tecnoflix.fragments.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/home_fragment"/>
+        tools:layout="@layout/home_fragment">
+        <action
+            android:id="@+id/action_homeFragment_to_infoFilmeFragment"
+            app:destination="@id/infoFilmeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/buscarFragment"
         android:name="com.example.tecnoflix.fragments.BuscarFragment"
@@ -18,4 +22,8 @@
         android:id="@+id/favoritoFragment"
         android:name="com.example.tecnoflix.fragments.FavoritoFragment"
         android:label="FavoritoFragment" />
+    <fragment
+        android:id="@+id/infoFilmeFragment"
+        android:name="com.example.tecnoflix.fragments.InfoFilmeFragment"
+        android:label="InfoFilmeFragment" />
 </navigation>

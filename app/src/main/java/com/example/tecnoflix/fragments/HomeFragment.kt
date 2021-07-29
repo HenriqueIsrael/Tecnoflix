@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,7 +15,7 @@ import com.example.tecnoflix.databinding.HomeFragmentBinding
 import com.example.tecnoflix.viewmodel.HomeViewModel
 import com.example.tecnoflix.viewmodel.LoginViewModel
 
-class HomeFragment: Fragment() {
+class HomeFragment: Fragment(), ListaFilmesAdapter.FilmeSelecionado {
 
     private var _binding: HomeFragmentBinding? = null
     private val binding: HomeFragmentBinding get() = _binding!!
@@ -37,18 +38,35 @@ class HomeFragment: Fragment() {
             ViewModelFactory(requireContext())
         ).get(HomeViewModel::class.java)
 
+        binding.recyclerViewSeries.isVisible = false
+        binding.recyclerViewEmAlta.isVisible = false
+        binding.recyclerViewAcao.isVisible = false
+
         viewModel.getFilmesPopulares()
 
         viewModel.listaFilmesLiveData.observe(viewLifecycleOwner,{
-            AlertDialog.Builder(requireContext()).setMessage("deu certo").show()
+            binding.recyclerViewSeries.adapter = ListaFilmesAdapter(it,1,this@HomeFragment)
+            binding.recyclerViewEmAlta.adapter = ListaFilmesAdapter(it,2,this@HomeFragment)
+            binding.recyclerViewAcao.adapter = ListaFilmesAdapter(it,3,this@HomeFragment)
+
+            binding.recyclerViewSeries.isVisible = true
+            binding.recyclerViewEmAlta.isVisible = true
+            binding.recyclerViewAcao.isVisible = true
         })
 
         viewModel.erroLiveData.observe(viewLifecycleOwner,{
             AlertDialog.Builder(requireContext()).setMessage(it).show()
         })
+    }
 
-        binding.recyclerViewSeries.adapter = ListaFilmesAdapter()
-        binding.recyclerViewEmAlta.adapter = ListaFilmesAdapter()
-        binding.recyclerViewAcao.adapter = ListaFilmesAdapter()
+    override fun enviaDadosDoFilmeClikado(
+        titulo: String,
+        capaFilme: String,
+        dataLancamento: String,
+        classificacaoFilme: Double,
+        numeroVotos: Int,
+        sinopse: String
+    ) {
+
     }
 }
