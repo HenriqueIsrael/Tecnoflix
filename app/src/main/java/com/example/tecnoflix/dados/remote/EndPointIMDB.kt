@@ -9,7 +9,7 @@ import retrofit2.http.Query
 
 
 interface EndPointIMDB {
-    @GET("/movie/popular")
+    @GET("movie/popular")
     suspend fun getFilmesPopulares(
         @Query("api_key") chaveapi: String,
         @Query("language") linguagem: String
@@ -20,7 +20,7 @@ interface EndPointIMDB {
     companion object {
         fun getEndPointInstance(): EndPointIMDB {
             return Retrofit.Builder()
-                .baseUrl("https://api.themoviedb.org/3")
+                .baseUrl("https://api.themoviedb.org/3/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(EndPointIMDB::class.java)
