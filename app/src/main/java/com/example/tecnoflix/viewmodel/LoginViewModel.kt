@@ -13,6 +13,9 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     private val _senhaLiveData = MutableLiveData <String>()
     val senhaLiveData: LiveData <String> = _senhaLiveData
 
+    private val _switchDefaultTrueLiveData = MutableLiveData <Boolean>()
+    val switchDefaultTrueLiveData : LiveData <Boolean> = _switchDefaultTrueLiveData
+
     fun saveLogin(email: String, senha: String) {
         loginRepository.saveLogin(email, senha)
     }
@@ -23,5 +26,13 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
 
     fun getSenha() {
         _senhaLiveData.postValue(loginRepository.getSenha())
+    }
+
+    fun switchDefaultTrue() {
+        if((loginRepository.getEmail().isNotEmpty())&&(loginRepository.getSenha()!="")){
+            _switchDefaultTrueLiveData.postValue(true)
+        } else {
+            _switchDefaultTrueLiveData.postValue(false)
+        }
     }
 }

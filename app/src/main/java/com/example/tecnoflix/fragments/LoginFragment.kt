@@ -36,6 +36,14 @@ class LoginFragment : Fragment() {
             ViewModelFactory(requireContext())
         ).get(LoginViewModel::class.java)
 
+        viewModel.switchDefaultTrue()
+
+        viewModel.switchDefaultTrueLiveData.observe(viewLifecycleOwner, {
+            if(it){
+                binding.switchSalvarLogin.toggle()
+            }
+        })
+
         viewModel.getEmail()
 
         viewModel.emailLiveData.observe(viewLifecycleOwner, {

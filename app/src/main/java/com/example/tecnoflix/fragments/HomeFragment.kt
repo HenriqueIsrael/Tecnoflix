@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.tecnoflix.adapter.ListaFilmesAdapter
 import com.example.tecnoflix.databinding.HomeFragmentBinding
 
 class HomeFragment: Fragment() {
@@ -19,5 +21,14 @@ class HomeFragment: Fragment() {
     ): View? {
         _binding = HomeFragmentBinding.inflate(inflater, container, false)
         return _binding!!.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.recyclerViewSeries.adapter = ListaFilmesAdapter()
+        binding.recyclerViewEmAlta.adapter = ListaFilmesAdapter()
+        binding.recyclerViewAcao.adapter = ListaFilmesAdapter()
+
     }
 }

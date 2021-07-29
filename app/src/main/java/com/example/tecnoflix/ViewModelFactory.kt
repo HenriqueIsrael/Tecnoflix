@@ -28,7 +28,7 @@ class ViewModelFactory(private val context: Context) : ViewModelProvider.Factory
     }
 
     private fun providerSharedPreferenceService(preference: SharedPreferences): SharedPreferenceService {
-        return providerSharedPreferenceService(preference)
+        return SharedPreferenceService(preference)
     }
 
     private fun providerSharedPreference(): SharedPreferences {
