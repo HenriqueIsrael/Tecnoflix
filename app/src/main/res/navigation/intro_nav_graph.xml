@@ -25,7 +25,7 @@
     </fragment>
     <activity
         android:id="@+id/homeActivity"
-        android:name="com.example.tecnoflix.HomeActivity"
+        android:name="com.example.tecnoflix.activities.HomeActivity"
         android:label="home_activity"
         tools:layout="@layout/home_activity" />
 </navigation>

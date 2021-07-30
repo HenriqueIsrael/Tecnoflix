@@ -1,7 +1,8 @@
-package com.example.tecnoflix
+package com.example.tecnoflix.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.tecnoflix.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

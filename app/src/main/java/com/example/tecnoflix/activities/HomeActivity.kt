@@ -1,9 +1,10 @@
-package com.example.tecnoflix
+package com.example.tecnoflix.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.example.tecnoflix.R
 import com.example.tecnoflix.databinding.HomeActivityBinding
 
 class HomeActivity : AppCompatActivity() {

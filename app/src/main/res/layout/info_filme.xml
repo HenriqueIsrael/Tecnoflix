@@ -7,7 +7,7 @@
     android:background="@color/black">
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/titulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -20,63 +20,63 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/capa"
         android:layout_width="150dp"
         android:layout_height="220dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/titulo"
         app:srcCompat="@drawable/capa_filme" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/sinopse"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:text="Sinopse: voin noiman busca vingança contra os programadores "
+        android:text="Sinopse:  "
+        android:textAlignment="viewStart"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imageView6"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+        app:layout_constraintStart_toStartOf="@+id/capa"
+        app:layout_constraintTop_toBottomOf="@+id/capa" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/dataLancamento"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
-        android:text="Data de lançamento: 29-07-2021"
+        android:text="Data de lançamento: "
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView6"
-        app:layout_constraintTop_toTopOf="@+id/imageView6" />
+        app:layout_constraintStart_toEndOf="@+id/capa"
+        app:layout_constraintTop_toTopOf="@+id/capa" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/avaliacao"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="8dp"
-        android:text="Avaliação: 4.8"
+        android:text="Avaliação: "
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintStart_toStartOf="@+id/dataLancamento"
+        app:layout_constraintTop_toBottomOf="@+id/dataLancamento" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/votos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="Nº de votos: 12"
+        android:text="Nº de votos: "
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        app:layout_constraintStart_toStartOf="@+id/avaliacao"
+        app:layout_constraintTop_toBottomOf="@+id/avaliacao" />
 </androidx.constraintlayout.widget.ConstraintLayout>

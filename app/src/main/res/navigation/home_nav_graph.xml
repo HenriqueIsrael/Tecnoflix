@@ -11,19 +11,22 @@
         android:label="HomeFragment"
         tools:layout="@layout/home_fragment">
         <action
-            android:id="@+id/action_homeFragment_to_infoFilmeFragment"
-            app:destination="@id/infoFilmeFragment" />
+            android:id="@+id/action_homeFragment_to_infoActivity"
+            app:destination="@id/infoActivity" />
     </fragment>
     <fragment
         android:id="@+id/buscarFragment"
         android:name="com.example.tecnoflix.fragments.BuscarFragment"
-        android:label="BuscarFragment" />
+        android:label="BuscarFragment"
+        tools:layout="@layout/buscar_fragment"/>
     <fragment
         android:id="@+id/favoritoFragment"
         android:name="com.example.tecnoflix.fragments.FavoritoFragment"
-        android:label="FavoritoFragment" />
-    <fragment
-        android:id="@+id/infoFilmeFragment"
-        android:name="com.example.tecnoflix.fragments.InfoFilmeFragment"
-        android:label="InfoFilmeFragment" />
+        android:label="FavoritoFragment"
+        tools:layout="@layout/favorito_fragment"/>
+    <activity
+        android:id="@+id/infoActivity"
+        android:name="com.example.tecnoflix.activities.InfoActivity"
+        android:label="activity_info"
+        tools:layout="@layout/activity_info" />
 </navigation>
