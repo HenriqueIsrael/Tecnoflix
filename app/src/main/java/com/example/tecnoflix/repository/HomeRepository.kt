@@ -17,7 +17,7 @@ class HomeRepository(private val endPoint: EndPointIMDB) {
 
 
     companion object{
-        private const val CHAVE_API = "c87a59110d1715855dac83ccfc5c2640"
-        private const val LINGUAGEM = "pt-BR"
+         const val CHAVE_API = "c87a59110d1715855dac83ccfc5c2640"
+         const val LINGUAGEM = "pt-BR"
     }
 }

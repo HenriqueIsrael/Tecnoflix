@@ -5,8 +5,10 @@ import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.tecnoflix.dados.remote.EndPointIMDB
+import com.example.tecnoflix.repository.BuscarRepository
 import com.example.tecnoflix.repository.HomeRepository
 import com.example.tecnoflix.repository.LoginRepository
+import com.example.tecnoflix.viewmodel.BuscarViewModel
 import com.example.tecnoflix.viewmodel.HomeViewModel
 import com.example.tecnoflix.viewmodel.LoginViewModel
 import java.lang.Exception
@@ -17,15 +19,26 @@ class ViewModelFactory(private val context: Context) : ViewModelProvider.Factory
             return providerLoginViewModel() as T
         } else if (modelClass == HomeViewModel::class.java) {
             return providerHomeViewModel() as T
+        } else if(modelClass == BuscarViewModel::class.java) {
+            return providerBuscarViewModel() as T
         } else {
             throw Exception("Erro ao identificar ViewModel!")
         }
     }
 
+    private fun providerBuscarViewModel(): BuscarViewModel {
+        return BuscarViewModel(
+            BuscarRepository(
+                providerEndPointInstance()
+            )
+        )
+    }
+
     private fun providerHomeViewModel(): HomeViewModel {
         return HomeViewModel(
             HomeRepository(
-                providerEndPointInstance())
+                providerEndPointInstance()
+            )
         )
     }
 
