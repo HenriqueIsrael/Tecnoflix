@@ -1,11 +1,14 @@
 package com.example.tecnoflix.fragments
 
+import android.app.AlertDialog
 import android.content.Intent.getIntent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.Fragment
+import com.example.tecnoflix.R
 import com.example.tecnoflix.databinding.InfoFilmeBinding
 import com.squareup.picasso.Picasso
 
@@ -14,6 +17,8 @@ class InfoFilmeFragment : Fragment() {
 
     private var _binding: InfoFilmeBinding? = null
     private val binding: InfoFilmeBinding get() = _binding!!
+
+    private var favorito: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,6 +31,23 @@ class InfoFilmeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        colocaDadosFilmeTela()
+
+        binding.toolbar3.setNavigationOnClickListener {
+            requireActivity().finish()
+        }
+        binding.btFavorito.setOnClickListener {
+            if (!favorito) {
+                binding.btFavorito.setImageResource(R.drawable.ic_favoritar)
+                favorito = true
+            } else {
+                binding.btFavorito.setImageResource(R.drawable.ic_nao_favorito)
+                favorito = false
+            }
+        }
+    }
+
+    private fun colocaDadosFilmeTela() {
         val intent = requireActivity().intent
 
         Picasso.with(binding.capa.context).load(intent.getStringExtra("capaFilme"))
