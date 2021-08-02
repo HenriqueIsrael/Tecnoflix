@@ -8,8 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.tecnoflix.R
+import com.example.tecnoflix.ViewModelFactory
 import com.example.tecnoflix.databinding.InfoFilmeBinding
+import com.example.tecnoflix.viewmodel.FavoritoViewModel
+import com.example.tecnoflix.viewmodel.HomeViewModel
 import com.squareup.picasso.Picasso
 
 
@@ -19,6 +23,8 @@ class InfoFilmeFragment : Fragment() {
     private val binding: InfoFilmeBinding get() = _binding!!
 
     private var favorito: Boolean = false
+
+    lateinit var viewModel: FavoritoViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,13 +37,26 @@ class InfoFilmeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelFactory(requireContext())
+        ).get(FavoritoViewModel::class.java)
+
+        val intent = requireActivity().intent
+
         colocaDadosFilmeTela()
 
         binding.toolbar3.setNavigationOnClickListener {
             requireActivity().finish()
         }
+
         binding.btFavorito.setOnClickListener {
             if (!favorito) {
+                viewModel.enviaFilme(
+                    intent.getStringExtra("titulo")!!,
+                    intent.getStringExtra("capaFilme")!!
+                )
                 binding.btFavorito.setImageResource(R.drawable.ic_favoritar)
                 favorito = true
             } else {
