@@ -3,11 +3,12 @@ package com.example.tecnoflix.repository
 import com.example.tecnoflix.dados.remote.EndPointIMDB
 import com.example.tecnoflix.dados.remote.modelo.ModeloFilmes
 import com.example.tecnoflix.repository.HomeRepository.Companion.CHAVE_API
+import com.example.tecnoflix.repository.HomeRepository.Companion.LINGUAGEM
 import java.lang.Exception
 
 class ViewPagerRepository(private val EndPoint: EndPointIMDB) {
     suspend fun getFilmesCartaz(dataFinal: String, dataInicial: String): ModeloFilmes {
-        val response = EndPoint.getFilmesCartaz(CHAVE_API,dataInicial,dataFinal)
+        val response = EndPoint.getFilmesCartaz(CHAVE_API,dataInicial,dataFinal,LINGUAGEM)
 
         if(response.isSuccessful){
             return response.body()!!

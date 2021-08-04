@@ -25,7 +25,8 @@ interface EndPointIMDB {
     suspend fun getFilmesCartaz(
         @Query("api_key") chaveapi: String,
         @Query("primary_release_date.gte") dataInicial: String,
-        @Query("primary_release_date.lte") dataFinal : String
+        @Query("primary_release_date.lte") dataFinal : String,
+        @Query("language") linguagem: String
     ): Response<ModeloFilmes>
 
     companion object {

@@ -10,28 +10,42 @@ import com.example.tecnoflix.R
 import com.example.tecnoflix.dados.remote.modelo.ModeloFavoritos
 import com.squareup.picasso.Picasso
 
-class ListaFavoritosAdapter(private val listFavorite : List<ModeloFavoritos>):
+class ListaFavoritosAdapter(
+    private val listFavorite: List<ModeloFavoritos>,
+   // private val filmeSelecionado: ListaFilmesAdapter.FilmeSelecionado
+) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-        override fun getItemCount(): Int {
-            return listFavorite.size
-        }
+    override fun getItemCount(): Int {
+        return listFavorite.size
+    }
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-            return ViewHolderGenerico(
-                LayoutInflater.from(parent.context).inflate(R.layout.filme_pesquisado,parent,false)
-            )
-        }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return ViewHolderGenerico(
+            LayoutInflater.from(parent.context).inflate(R.layout.filme_pesquisado, parent, false)
+        )
+    }
 
-        override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-            if (holder is ViewHolderGenerico){
-                holder.titulo.text = listFavorite[position].title
-                Picasso.with(holder.capaPesquisada.context)
-                    .load("https://image.tmdb.org/t/p/w500/" + listFavorite[position].capaImagem)
-                    .into(holder.capaPesquisada)
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if (holder is ViewHolderGenerico) {
+            holder.titulo.text = listFavorite[position].title
+            Picasso.with(holder.capaPesquisada.context)
+                .load("https://image.tmdb.org/t/p/w500/" + listFavorite[position].capaImagem)
+                .into(holder.capaPesquisada)
+            holder.itemView.setOnClickListener {
+ //               filmeSelecionado.enviaDadosDoFilmeClikado(
+//                    listFavorite.results[position].title,
+//                    "https://image.tmdb.org/t/p/w500/" + listFavorite.results[position].poster_path,
+//                    listFavorite.results[position].release_date,
+//                    listFavorite.results[position].vote_average,
+//                    listFavorite.results[position].vote_count,
+//                    listFavorite.results[position].overview
+   //             )
             }
         }
-        class ViewHolderGenerico(itemView: View): RecyclerView.ViewHolder(itemView) {
-            val capaPesquisada: ImageView = itemView.findViewById(R.id.filme_pesquisado_capa)
-            val titulo: TextView = itemView.findViewById(R.id.titulo_filme_pesquisado)
-        }
+    }
+
+    class ViewHolderGenerico(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val capaPesquisada: ImageView = itemView.findViewById(R.id.filme_pesquisado_capa)
+        val titulo: TextView = itemView.findViewById(R.id.titulo_filme_pesquisado)
+    }
 }
