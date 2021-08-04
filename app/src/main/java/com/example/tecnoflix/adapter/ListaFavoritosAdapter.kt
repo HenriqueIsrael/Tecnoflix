@@ -5,19 +5,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tecnoflix.R
-import com.example.tecnoflix.dados.remote.modelo.ModeloFilmes
+import com.example.tecnoflix.dados.remote.modelo.ModeloFavoritos
 import com.squareup.picasso.Picasso
 
-class SearchFilmsAdapter(
-    private val listaFilmesPesquisadas: ModeloFilmes,
-    private val filmeSelecionado: ListaFilmesAdapter.FilmeSelecionado
+class ListaFavoritosAdapter(
+    private val listFavorite: List<ModeloFavoritos>,
+   // private val filmeSelecionado: ListaFilmesAdapter.FilmeSelecionado
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun getItemCount(): Int {
-        return listaFilmesPesquisadas.results.size
+        return listFavorite.size
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -28,19 +27,19 @@ class SearchFilmsAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is ViewHolderGenerico) {
-            holder.titulo.text = listaFilmesPesquisadas.results[position].title
+            holder.titulo.text = listFavorite[position].title
             Picasso.with(holder.capaPesquisada.context)
-                .load("https://image.tmdb.org/t/p/w500/" + listaFilmesPesquisadas.results[position].poster_path)
+                .load("https://image.tmdb.org/t/p/w500/" + listFavorite[position].capaImagem)
                 .into(holder.capaPesquisada)
             holder.itemView.setOnClickListener {
-                filmeSelecionado.enviaDadosDoFilmeClikado(
-                    listaFilmesPesquisadas.results[position].title,
-                    "https://image.tmdb.org/t/p/w500/" + listaFilmesPesquisadas.results[position].poster_path,
-                    listaFilmesPesquisadas.results[position].release_date,
-                    listaFilmesPesquisadas.results[position].vote_average,
-                    listaFilmesPesquisadas.results[position].vote_count,
-                    listaFilmesPesquisadas.results[position].overview
-                )
+ //               filmeSelecionado.enviaDadosDoFilmeClikado(
+//                    listFavorite.results[position].title,
+//                    "https://image.tmdb.org/t/p/w500/" + listFavorite.results[position].poster_path,
+//                    listFavorite.results[position].release_date,
+//                    listFavorite.results[position].vote_average,
+//                    listFavorite.results[position].vote_count,
+//                    listFavorite.results[position].overview
+   //             )
             }
         }
     }
