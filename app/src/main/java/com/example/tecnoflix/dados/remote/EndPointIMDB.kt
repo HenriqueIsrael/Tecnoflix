@@ -18,7 +18,8 @@ interface EndPointIMDB {
     @GET("search/movie")
     suspend fun getPesquisaTitulo(
         @Query("api_key") chaveapi: String,
-        @Query("query") nomeDoFilme: String
+        @Query("query") nomeDoFilme: String,
+        @Query("language") linguagem: String
     ): Response<ModeloFilmes>
 
     @GET("discover/movie")
