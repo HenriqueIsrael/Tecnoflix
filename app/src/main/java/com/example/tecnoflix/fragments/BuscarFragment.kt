@@ -44,7 +44,7 @@ class BuscarFragment: Fragment() {
         })
 
         viewModel.erroLiveData.observe(viewLifecycleOwner,{
-            AlertDialog.Builder(requireContext()).setMessage("Deu ruim").show()
+            AlertDialog.Builder(requireContext()).setMessage("ERRO 1023").show()
         })
     }
 }
