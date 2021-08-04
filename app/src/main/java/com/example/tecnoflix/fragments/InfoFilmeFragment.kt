@@ -1,19 +1,16 @@
 package com.example.tecnoflix.fragments
 
-import android.app.AlertDialog
-import android.content.Intent.getIntent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.graphics.drawable.toDrawable
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.tecnoflix.R
 import com.example.tecnoflix.ViewModelFactory
 import com.example.tecnoflix.databinding.InfoFilmeBinding
 import com.example.tecnoflix.viewmodel.FavoritoViewModel
-import com.example.tecnoflix.viewmodel.HomeViewModel
 import com.squareup.picasso.Picasso
 
 
@@ -45,6 +42,11 @@ class InfoFilmeFragment : Fragment() {
 
         val intent = requireActivity().intent
 
+        viewModel.buscaFilme(intent.getStringExtra("titulo")!!)
+        viewModel.buscaFilmesFavoritoLiveData.observe(viewLifecycleOwner,{
+            Toast.makeText(requireContext(),it,Toast.LENGTH_LONG).show()
+        })
+
         colocaDadosFilmeTela()
 
         binding.toolbar3.setNavigationOnClickListener {
@@ -52,18 +54,29 @@ class InfoFilmeFragment : Fragment() {
         }
 
         binding.btFavorito.setOnClickListener {
-            if (!favorito) {
+            viewModel.cliqueNoBotaoFavorito()
+        }
+
+        viewModel.coracaoColorido.observe(viewLifecycleOwner, {
+            if(it){
+                binding.btFavorito.setImageResource(R.drawable.ic_favoritar)
+            }else{
+                binding.btFavorito.setImageResource(R.drawable.ic_nao_favorito)
+            }
+        })
+
+        viewModel.controleSalvaOuDeleta.observe(viewLifecycleOwner, {
+            if(it){
                 viewModel.enviaFilme(
                     intent.getStringExtra("titulo")!!,
                     intent.getStringExtra("capaFilme")!!
                 )
-                binding.btFavorito.setImageResource(R.drawable.ic_favoritar)
-                favorito = true
-            } else {
-                binding.btFavorito.setImageResource(R.drawable.ic_nao_favorito)
-                favorito = false
+            }else{
+                viewModel.deletaFilme(
+                    intent.getStringExtra("titulo")!!
+                )
             }
-        }
+        })
     }
 
     private fun colocaDadosFilmeTela() {

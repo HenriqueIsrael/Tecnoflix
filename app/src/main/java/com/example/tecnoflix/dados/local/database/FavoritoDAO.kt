@@ -1,11 +1,12 @@
 package com.example.tecnoflix.dados.local.database
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.example.tecnoflix.dados.remote.modelo.ModeloFavoritos
-
+//    CRUD
+//    C -> Create criação
+//    R -> Read leitura
+//    U -> Update atualização
+//    D -> Delete Deletar
 @Dao
 interface FavoritoDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -13,4 +14,10 @@ interface FavoritoDAO {
 
     @Query("SELECT * FROM ModeloFavoritos")
     fun returnListaDeFavoritos(): List<ModeloFavoritos>
+
+    @Query("DELETE FROM ModeloFavoritos WHERE title = :titulo")
+    fun deletaFilmeFavorito(titulo: String)
+
+    @Query("SELECT title FROM  ModeloFavoritos WHERE title = :titulo")
+    fun buscaFilmeFavorito(titulo: String): String
 }
