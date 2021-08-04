@@ -7,14 +7,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.tecnoflix.dados.local.database.FavoritoDAO
 import com.example.tecnoflix.dados.local.database.FavoritoDatabase
 import com.example.tecnoflix.dados.remote.EndPointIMDB
-import com.example.tecnoflix.repository.BuscarRepository
-import com.example.tecnoflix.repository.FavoritoRepository
-import com.example.tecnoflix.repository.HomeRepository
-import com.example.tecnoflix.repository.LoginRepository
-import com.example.tecnoflix.viewmodel.BuscarViewModel
-import com.example.tecnoflix.viewmodel.FavoritoViewModel
-import com.example.tecnoflix.viewmodel.HomeViewModel
-import com.example.tecnoflix.viewmodel.LoginViewModel
+import com.example.tecnoflix.repository.*
+import com.example.tecnoflix.viewmodel.*
 import java.lang.Exception
 
 class ViewModelFactory(private val context: Context) : ViewModelProvider.Factory {
@@ -23,13 +17,24 @@ class ViewModelFactory(private val context: Context) : ViewModelProvider.Factory
             return providerLoginViewModel() as T
         } else if (modelClass == HomeViewModel::class.java) {
             return providerHomeViewModel() as T
-        } else if(modelClass == BuscarViewModel::class.java) {
+        } else if (modelClass == BuscarViewModel::class.java) {
             return providerBuscarViewModel() as T
-        }else if(modelClass == FavoritoViewModel::class.java) {
+        } else if (modelClass == FavoritoViewModel::class.java) {
             return providerFavoritoViewModel() as T
-        }else {
+        } else if (modelClass == ViewPagerViewModel::class.java) {
+            return providerViewPagerViewModel() as T
+        } else {
             throw Exception("Erro ao identificar ViewModel!")
         }
+    }
+
+    private fun providerViewPagerViewModel(): ViewPagerViewModel {
+        return ViewPagerViewModel(
+            ViewPagerRepository(
+                providerEndPointInstance()
+            )
+        )
+
     }
 
     private fun providerBuscarViewModel(): BuscarViewModel {
@@ -70,7 +75,7 @@ class ViewModelFactory(private val context: Context) : ViewModelProvider.Factory
         return context.getSharedPreferences("DATA", Context.MODE_PRIVATE)
     }
 
-    private fun providerFavoritoViewModel(): FavoritoViewModel{
+    private fun providerFavoritoViewModel(): FavoritoViewModel {
         return FavoritoViewModel(
             FavoritoRepository(
                 providerFavoritoDAO(providerFavoritoDatabase())

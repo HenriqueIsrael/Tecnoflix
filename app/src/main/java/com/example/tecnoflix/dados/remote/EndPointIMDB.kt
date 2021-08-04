@@ -21,6 +21,12 @@ interface EndPointIMDB {
         @Query("query") nomeDoFilme: String
     ): Response<ModeloFilmes>
 
+    @GET("discover/movie")
+    suspend fun getFilmesCartaz(
+        @Query("api_key") chaveapi: String,
+        @Query("primary_release_date.gte") dataInicial: String,
+        @Query("primary_release_date.lte") dataFinal : String
+    ): Response<ModeloFilmes>
 
     companion object {
         fun getEndPointInstance(): EndPointIMDB {

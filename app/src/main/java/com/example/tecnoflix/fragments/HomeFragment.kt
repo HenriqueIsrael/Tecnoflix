@@ -15,6 +15,7 @@ import com.example.tecnoflix.R
 import com.example.tecnoflix.ViewModelFactory
 import com.example.tecnoflix.activities.InfoActivity
 import com.example.tecnoflix.adapter.ListaFilmesAdapter
+import com.example.tecnoflix.adapter.ViewPagerAdapter
 import com.example.tecnoflix.databinding.HomeFragmentBinding
 import com.example.tecnoflix.viewmodel.HomeViewModel
 import com.example.tecnoflix.viewmodel.LoginViewModel
@@ -61,6 +62,7 @@ class HomeFragment : Fragment(), ListaFilmesAdapter.FilmeSelecionado {
         viewModel.erroLiveData.observe(viewLifecycleOwner, {
             AlertDialog.Builder(requireContext()).setMessage(it).show()
         })
+        binding.viewPager.adapter = ViewPagerAdapter(this)
     }
 
     override fun enviaDadosDoFilmeClikado(
