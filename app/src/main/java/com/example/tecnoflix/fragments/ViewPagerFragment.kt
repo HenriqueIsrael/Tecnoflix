@@ -36,7 +36,7 @@ class ViewPagerFragment : Fragment() {
             ViewModelFactory(requireContext())
         ).get(ViewPagerViewModel::class.java)
 
-        viewModel.getFilmesCartaz("2021-07-01","2021-08-01")
+        viewModel.getFilmesCartaz()
 
         viewModel.viewPagerLiveData.observe(viewLifecycleOwner, {
             val posicao = requireArguments().getInt("posicaoViewPager") //Posição do viewpager.
