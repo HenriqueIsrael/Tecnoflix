@@ -8,6 +8,10 @@ import androidx.room.PrimaryKey
 data class ModeloFavoritos (
     val title: String,
     val capaImagem: String
+//    val dataLancamento: String,
+//    val avaliacao: String,
+//    val numVotos: String,
+//    val sinopse: String
         ){
     @PrimaryKey(autoGenerate = true)
         var id : Int = 0
