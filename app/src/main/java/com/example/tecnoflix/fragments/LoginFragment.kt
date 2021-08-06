@@ -1,5 +1,6 @@
 package com.example.tecnoflix.fragments
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -39,7 +40,7 @@ class LoginFragment : Fragment() {
         viewModel.switchDefaultTrue()
 
         viewModel.switchDefaultTrueLiveData.observe(viewLifecycleOwner, {
-            if(it){
+            if (it) {
                 binding.switchSalvarLogin.toggle()
             }
         })
@@ -56,17 +57,27 @@ class LoginFragment : Fragment() {
             binding.campoSenha.setText(it)
         })
 
-        binding.switchSalvarLogin.setOnCheckedChangeListener { _ , isChecked ->
-            if(isChecked){
-                viewModel.saveLogin(binding.campoEmail.text.toString(), binding.campoSenha.text.toString())
+        binding.switchSalvarLogin.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                viewModel.saveLogin(
+                    binding.campoEmail.text.toString(),
+                    binding.campoSenha.text.toString()
+                )
             } else {
                 viewModel.deleteLogin()
             }
         }
 
         binding.btEntrar.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_homeActivity)
+            viewModel.buscaUsuarios(binding.campoEmail.text.toString())
         }
+        viewModel.usuarioLiveData.observe(viewLifecycleOwner, {
+            if (binding.campoEmail.text.toString() == it.email && binding.campoSenha.text.toString() == it.senha) {
+                findNavController().navigate(R.id.action_loginFragment_to_homeActivity)
+            } else {
+                AlertDialog.Builder(requireContext()).setMessage("Credenciais inválidas!").show()
+            }
+        })
         binding.cadastrar.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_cadastroFragment)
         }

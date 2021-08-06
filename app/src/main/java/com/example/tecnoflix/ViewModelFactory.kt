@@ -73,7 +73,7 @@ class ViewModelFactory(private val context: Context) : ViewModelProvider.Factory
             LoginRepository(
                 providerSharedPreferenceService(
                     providerSharedPreference()
-                )
+                ), providerFavoritoDAO(providerFavoritoDatabase())
             )
         )
     }

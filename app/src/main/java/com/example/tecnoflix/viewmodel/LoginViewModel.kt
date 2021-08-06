@@ -3,9 +3,13 @@ package com.example.tecnoflix.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.tecnoflix.dados.remote.modelo.ModeloLogin
 import com.example.tecnoflix.repository.LoginRepository
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
+
+    private val _usuarioLiveData = MutableLiveData <ModeloLogin>()
+    val usuarioLiveData: LiveData<ModeloLogin> = _usuarioLiveData
 
     private val _emailLiveData = MutableLiveData <String>()
     val emailLiveData: LiveData <String> = _emailLiveData
@@ -38,5 +42,10 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
 
     fun deleteLogin(){
         loginRepository.saveLogin("", "")
+    }
+    fun buscaUsuarios(
+        email: String
+    ) {
+        _usuarioLiveData.postValue(loginRepository.buscaUsuarios(email))
     }
 }

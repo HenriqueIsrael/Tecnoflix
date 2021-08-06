@@ -2,6 +2,7 @@ package com.example.tecnoflix.dados.local.database
 
 import androidx.room.*
 import com.example.tecnoflix.dados.remote.modelo.ModeloFavoritos
+import com.example.tecnoflix.dados.remote.modelo.ModeloLogin
 
 //    CRUD
 //    C -> Create criação
@@ -24,4 +25,10 @@ interface FavoritoDAO {
 
     @Query("SELECT * FROM  ModeloFavoritos WHERE title = :titulo")
     fun retornaDadosFilmes(titulo: String): ModeloFavoritos
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun inserirUsuario(usuario: ModeloLogin)
+
+    @Query("SELECT * FROM  ModeloLogin WHERE email = :email")
+    fun retornaUsuarios(email: String): ModeloLogin
 }
