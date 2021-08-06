@@ -69,7 +69,11 @@ class InfoFilmeFragment : Fragment() {
             if(it){
                 viewModel.enviaFilme(
                     intent.getStringExtra("titulo")!!,
-                    intent.getStringExtra("capaFilme")!!
+                    intent.getStringExtra("capaFilme")!!,
+                    intent.getStringExtra("dataLancamento")!!,
+                    intent.getDoubleExtra("classificacaoFilme", 0.00)!!.toString(),
+                    intent.getIntExtra("numeroVotos", 0)!!.toString(),
+                    intent.getStringExtra("sinopse")!!
                 )
             }else{
                 viewModel.deletaFilme(

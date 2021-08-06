@@ -22,6 +22,6 @@ interface FavoritoDAO {
     @Query("SELECT title FROM  ModeloFavoritos WHERE title = :titulo")
     fun buscaFilmeFavorito(titulo: String): String
 
-//    @Query("SELECT title,capaImagem,dataLancamento,avaliacao,numVotos,sinopse FROM  ModeloFavoritos WHERE title = :titulo")
-//    fun retornaDadosFilmes(titulo: String): Array<String>
+    @Query("SELECT * FROM  ModeloFavoritos WHERE title = :titulo")
+    fun retornaDadosFilmes(titulo: String): ModeloFavoritos
 }

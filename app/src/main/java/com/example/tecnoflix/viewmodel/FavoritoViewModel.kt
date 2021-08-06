@@ -6,12 +6,12 @@ import androidx.lifecycle.ViewModel
 import com.example.tecnoflix.dados.remote.modelo.ModeloFavoritos
 import com.example.tecnoflix.repository.FavoritoRepository
 
-class FavoritoViewModel(private val favoritoRepository: FavoritoRepository): ViewModel() {
+class FavoritoViewModel(private val favoritoRepository: FavoritoRepository) : ViewModel() {
 
-    private val _listaFilmesFavoritoLiveData = MutableLiveData <List<ModeloFavoritos>>()
+    private val _listaFilmesFavoritoLiveData = MutableLiveData<List<ModeloFavoritos>>()
     val listaFilmesFavoritoLiveData: LiveData<List<ModeloFavoritos>> = _listaFilmesFavoritoLiveData
 
-    private val _buscaFilmesFavoritoLiveData = MutableLiveData <String>()
+    private val _buscaFilmesFavoritoLiveData = MutableLiveData<String>()
     val buscaFilmesFavoritoLiveData: LiveData<String> = _buscaFilmesFavoritoLiveData
 
     private val _coracaoColorido = MutableLiveData<Boolean>()
@@ -20,10 +20,25 @@ class FavoritoViewModel(private val favoritoRepository: FavoritoRepository): Vie
     private val _controleSalvaOuDeleta = MutableLiveData<Boolean>()
     val controleSalvaOuDeleta: LiveData<Boolean> = _controleSalvaOuDeleta
 
-    fun enviaFilme(titulo: String, capaImagem: String){
-        favoritoRepository.salvarFavorito(titulo,capaImagem)
+    fun enviaFilme(
+        titulo: String,
+        capaImagem: String,
+        dataLancamento: String,
+        classificacaoFilme: String,
+        numeroVotos: String,
+        sinopse: String
+    ) {
+        favoritoRepository.salvarFavorito(
+            titulo,
+            capaImagem,
+            dataLancamento,
+            classificacaoFilme,
+            numeroVotos,
+            sinopse
+        )
     }
-    fun getListaFilme(){
+
+    fun getListaFilme() {
         _listaFilmesFavoritoLiveData.postValue(favoritoRepository.getListaFavoritos())
     }
 
@@ -31,15 +46,15 @@ class FavoritoViewModel(private val favoritoRepository: FavoritoRepository): Vie
         favoritoRepository.deletaFilme(titulo)
     }
 
-    fun buscaFilme (titulo: String) {
-        if(favoritoRepository.buscaFilme(titulo).isNullOrEmpty()){
+    fun buscaFilme(titulo: String) {
+        if (favoritoRepository.buscaFilme(titulo).isNullOrEmpty()) {
             _coracaoColorido.postValue(false)
-        }else{
+        } else {
             _coracaoColorido.postValue(true)
         }
     }
 
-    fun cliqueNoBotaoFavorito(){
+    fun cliqueNoBotaoFavorito() {
         if (coracaoColorido.value == true) {
             _coracaoColorido.postValue(false)
             _controleSalvaOuDeleta.postValue(false)

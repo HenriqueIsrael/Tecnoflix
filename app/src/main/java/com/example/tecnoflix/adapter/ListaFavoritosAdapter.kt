@@ -12,7 +12,7 @@ import com.squareup.picasso.Picasso
 
 class ListaFavoritosAdapter(
     private val listFavorite: List<ModeloFavoritos>,
-   // private val filmeSelecionado: ListaFilmesAdapter.FilmeSelecionado
+    private val filmeSelecionado: ListaFilmesAdapter.FilmeSelecionado
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun getItemCount(): Int {
@@ -32,14 +32,14 @@ class ListaFavoritosAdapter(
                 .load("https://image.tmdb.org/t/p/w500/" + listFavorite[position].capaImagem)
                 .into(holder.capaPesquisada)
             holder.itemView.setOnClickListener {
- //               filmeSelecionado.enviaDadosDoFilmeClikado(
-//                    listFavorite.results[position].title,
-//                    "https://image.tmdb.org/t/p/w500/" + listFavorite.results[position].poster_path,
-//                    listFavorite.results[position].release_date,
-//                    listFavorite.results[position].vote_average,
-//                    listFavorite.results[position].vote_count,
-//                    listFavorite.results[position].overview
-   //             )
+                filmeSelecionado.enviaDadosDoFilmeClikado(
+                    listFavorite[position].title,
+                    "https://image.tmdb.org/t/p/w500/" + listFavorite[position].capaImagem,
+                    listFavorite[position].dataLancamento,
+                    listFavorite[position].avaliacao.toDouble(),
+                    listFavorite[position].numVotos.toInt(),
+                    listFavorite[position].sinopse
+                )
             }
         }
     }

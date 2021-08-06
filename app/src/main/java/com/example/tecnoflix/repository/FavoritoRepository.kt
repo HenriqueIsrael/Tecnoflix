@@ -4,8 +4,24 @@ import com.example.tecnoflix.dados.local.database.FavoritoDAO
 import com.example.tecnoflix.dados.remote.modelo.ModeloFavoritos
 
 class FavoritoRepository(private val favoritoDAO: FavoritoDAO) {
-    fun salvarFavorito(titulo: String, capaImagem: String) {
-        favoritoDAO.inserirFavorito(ModeloFavoritos(titulo, capaImagem))
+    fun salvarFavorito(
+        titulo: String,
+        capaImagem: String,
+        dataLancamento: String,
+        classificacaoFilme: String,
+        numeroVotos: String,
+        sinopse: String
+    ) {
+        favoritoDAO.inserirFavorito(
+            ModeloFavoritos(
+                titulo,
+                capaImagem,
+                dataLancamento,
+                classificacaoFilme,
+                numeroVotos,
+                sinopse
+            )
+        )
     }
 
     fun getListaFavoritos(): List<ModeloFavoritos> {

@@ -5,14 +5,14 @@ import androidx.room.PrimaryKey
 
 @Entity
 
-data class ModeloFavoritos (
+data class ModeloFavoritos(
     val title: String,
-    val capaImagem: String
-//    val dataLancamento: String,
-//    val avaliacao: String,
-//    val numVotos: String,
-//    val sinopse: String
-        ){
+    val capaImagem: String,
+    val dataLancamento: String,
+    val avaliacao: String,
+    val numVotos: String,
+    val sinopse: String
+) {
     @PrimaryKey(autoGenerate = true)
-        var id : Int = 0
+    var id: Int = 0
 }
