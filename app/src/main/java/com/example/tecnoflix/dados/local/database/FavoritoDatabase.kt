@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.tecnoflix.dados.remote.modelo.ModeloFavoritos
 
-@Database(entities = [ModeloFavoritos::class], version = 1, exportSchema = false)
+@Database(entities = [ModeloFavoritos::class,],  version = 1, exportSchema = false)
 abstract class FavoritoDatabase : RoomDatabase() {
     abstract fun favoritoDAO(): FavoritoDAO
 

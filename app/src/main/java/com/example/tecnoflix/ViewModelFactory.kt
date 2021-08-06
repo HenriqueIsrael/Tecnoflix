@@ -23,9 +23,20 @@ class ViewModelFactory(private val context: Context) : ViewModelProvider.Factory
             return providerFavoritoViewModel() as T
         } else if (modelClass == ViewPagerViewModel::class.java) {
             return providerViewPagerViewModel() as T
+        } else if(modelClass == CadastroViewModel::class.java) {
+            return providerCadastroViewModel() as T
         } else {
             throw Exception("Erro ao identificar ViewModel!")
         }
+    }
+
+    private fun providerCadastroViewModel(): CadastroViewModel {
+        return CadastroViewModel(
+            CadastroRepository(
+                providerFavoritoDAO(providerFavoritoDatabase())
+            )
+        )
+
     }
 
     private fun providerViewPagerViewModel(): ViewPagerViewModel {

@@ -35,4 +35,8 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
             _switchDefaultTrueLiveData.postValue(false)
         }
     }
+
+    fun deleteLogin(){
+        loginRepository.saveLogin("", "")
+    }
 }

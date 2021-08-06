@@ -60,12 +60,15 @@ class LoginFragment : Fragment() {
             if(isChecked){
                 viewModel.saveLogin(binding.campoEmail.text.toString(), binding.campoSenha.text.toString())
             } else {
-                viewModel.saveLogin("","")
+                viewModel.deleteLogin()
             }
         }
 
         binding.btEntrar.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_homeActivity)
+        }
+        binding.cadastrar.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_cadastroFragment)
         }
     }
 }
